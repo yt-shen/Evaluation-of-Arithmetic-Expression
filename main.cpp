@@ -23,7 +23,7 @@ int main() {
 				cout << "Error: Containing undefined variable(s).\n";
 			}
 			else {
-				cout << output(input, 0, k, v) << '\n';
+				cout << calculate_result(input, 0, k, v) << '\n';
 			}
 		}
 		// Variable assignment.
@@ -33,9 +33,9 @@ int main() {
 			}
 			else {
 				var = input[0][0];
-				v[int(var) - 'A'].value = output(input, 2, k, v);
+				v[int(var) - 'A'].value = calculate_result(input, 2, k, v);
 				v[int(var) - 'A'].defined = 1;
-				cout << var << " = " << output(input, 2, k, v) << '\n';
+				cout << var << " = " << calculate_result(input, 2, k, v) << '\n';
 			}
 		}
 	}

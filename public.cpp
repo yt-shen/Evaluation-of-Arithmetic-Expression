@@ -1,7 +1,7 @@
 #include "public.h"
 
 // Define the type of operations.
-int type(string opera) {
+int get_type(string opera) {
 	if (opera == "(") return 1;	
 	if (opera == "+") return 2;
 	if (opera == "-") return 3;
@@ -11,8 +11,8 @@ int type(string opera) {
 	return 0;
 }
 
-// The precedence of operations.
-int precedence(int type) {
+// Precedence is used to handle the order of operations.
+int get_precedence(int type) {
 	switch (type) {
 	case 1: return 1; // '(' has the lowest precedence.
 	case 2:case 3: return 2; // '+' and '-' have medium precedence.
@@ -22,12 +22,12 @@ int precedence(int type) {
 	return 0;
 }
 
-// Check if the input is valid.
+// The input should be a single alphabet letter.
 bool is_variable_valid(string input) {
 	return input.length() == 1 && isalpha(input[0]);
 }
 
-// Check if all the variables in the expression are defined.
+// All the variables in the expression should be defined.
 bool is_all_defined(string input[], int m, int n, variable v[]) {
 	bool def = 1;
 	char var;
@@ -55,7 +55,7 @@ double compute(double x, double y, operation s) {
 }
 
 // Evaluate the expression and return the result.
-double output(string input[], int m, int n, variable v[]) {
+double calculate_result(string input[], int m, int n, variable v[]) {
 	double number[MAX_INPUT]; // Stack for numbers.
 	operation symbol[MAX_INPUT]; // Stack for symbols.
 	symbol[0].precedence = 0;
@@ -78,20 +78,19 @@ double output(string input[], int m, int n, variable v[]) {
 			}
 		}
 		else if (input[i] == "(") {
-			symbol[t].type = type(input[i]);
-			symbol[t].precedence = precedence(symbol[t].type);
+			symbol[t].type = get_type(input[i]);
+			symbol[t].precedence = get_precedence(symbol[t].type);
 			t++;
 		}
 		else if (input[i] == "+" || input[i] == "-" || input[i] == "*" || input[i] == "/") {
 			// Process operators with higher precedence in the stack.
-			while (symbol[t - 1].precedence >= precedence(type(input[i]))) {
-				// Compute the first 2 numbers in the stack, then put the result back.
+			while (symbol[t - 1].precedence >= get_precedence(get_type(input[i]))) {
 				number[s - 2] = compute(number[s - 2], number[s - 1], symbol[t - 1]);
 				s--;
 				t--;
 			}
-			symbol[t].type = type(input[i]);
-			symbol[t].precedence = precedence(symbol[t].type);
+			symbol[t].type = get_type(input[i]);
+			symbol[t].precedence = get_precedence(symbol[t].type);
 			t++;
 		}
 		else if (is_variable_valid(input[i])) {

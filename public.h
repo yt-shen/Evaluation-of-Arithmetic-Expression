@@ -6,21 +6,21 @@
 
 using namespace std;
 
-// Type of operations and their precedence.
+// 'precedence' is used to handle the order of operations.
 typedef struct operation{
 	int type;
 	int precedence;
 }operation;
 
-// Value of variables; 'defined' is set to 1 only when the variable is defined.
+// 'defined' is set to 1 only when the variable has been defined.
 typedef struct variable {
 	double value;
 	bool defined = 0;
 }variable;
 
-int type(string opera);
-int precedence(int type);
+int get_type(string opera);
+int get_precedence(int type);
 bool is_variable_valid(string input);
 bool is_all_defined(string input[], int m, int n, variable v[]);
 double compute(double x, double y, operation s);
-double output(string input[], int m, int n, variable v[]);
+double calculate_result(string input[], int m, int n, variable v[]);

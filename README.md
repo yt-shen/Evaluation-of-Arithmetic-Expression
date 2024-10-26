@@ -6,7 +6,15 @@ This is a simple expression evaluator written in C++. It can handle arithmetic o
 - Handles parentheses for defining operation precedence.
 - Allows the use of variables (a-z, A-Z) to store values.
 
-# Usage Examples
+# Description
+
+The expression evaluator processes user input by reading a series of tokens, including numbers, operators, and variables. It maintains a storage system for these variables, tracking whether they have been defined.
+Using a stack-based approach, the evaluator handles operations by comparing the precedence of encountered operators with those already in the stack, ensuring the correct order of operations. It also appropriately manages parentheses for nested expressions. 
+After processing the expression, the evaluator outputs either the computed result or the value of the assigned variable, allowing users to perform complex calculations while adhering to mathematical conventions.
+
+# How to use
+
+Compile: `$ make`
 
 Here are some examples of how to use the expression evaluator:
 
