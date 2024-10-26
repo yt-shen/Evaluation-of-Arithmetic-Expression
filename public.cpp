@@ -1,18 +1,4 @@
-#include <iostream>
-#include <string>
-using namespace std;
-
-// Type of operations and their precedence.
-typedef struct operation{
-	int type;
-	int precedence;
-}operation;
-
-// Value of variables and whether they have been defined.
-typedef struct variable {
-	double value;
-	bool defined = 0;
-}variable;
+#include "public.h"
 
 // Define the type of operations.
 int type(string opera) {
@@ -36,13 +22,13 @@ int precedence(int type) {
 	return 0;
 }
 
-// Check if the input variable is valid (i.e., a single alphabet letter).
+// Check if the input is valid.
 bool check_variable(string input) {
 	return input.length() == 1 && isalpha(input[0]);
 }
 
 // Check if all the variables in the expression are defined.
-bool check_defined(string input[100], int m, int n, variable v[58]) {
+bool check_defined(string input[], int m, int n, variable v[]) {
 	bool def = 1;
 	char var;
 	for (int i = m; i <= n; i++) {
@@ -69,9 +55,9 @@ double compute(double x, double y, operation s) {
 }
 
 // Evaluate the expression and return the result.
-double output(string input[100], int m, int n, variable v[58]) {
-	double number[100]; // Stack for numbers.
-	operation symbol[100]; // Stack for symbols.
+double output(string input[], int m, int n, variable v[]) {
+	double number[MAX_INPUT]; // Stack for numbers.
+	operation symbol[MAX_INPUT]; // Stack for symbols.
 	symbol[0].precedence = 0;
 	int s = 0; // Stack pointer for numbers.
 	int t = 1; // Stack pointer for symbols.
@@ -125,41 +111,4 @@ double output(string input[100], int m, int n, variable v[58]) {
 		number[s - 1] = compute(number[s - 1], number[s], symbol[t]);
 	}
 	return number[0];
-}
-
-int main() {
-	string input[100];
-	variable v[58];
-	char var;
-	while (1) {
-		int k = 0; // Length of input.
-		for (int i = 0; i < 100; i++) {
-			cin >> input[i];
-			if (getchar() == '\n') {
-				break;
-			}
-			k++;
-		}
-		// Regular expression evaluation.
-		if (input[1] != "=") {
-			if (!check_defined(input, 0, k, v)) {
-				cout << "Error: Containing undefined variable(s).\n";
-			}
-			else {
-				cout << output(input, 0, k, v) << '\n';
-			}
-		}
-		// Variable assignment.
-		else {
-			if (!check_defined(input, 2, k, v)) {
-				cout << "Error: Containing undefined variable(s).\n";
-			}
-			else {
-				var = input[0][0];
-				v[int(var) - 'A'].value = output(input, 2, k, v);
-				v[int(var) - 'A'].defined = 1;
-				cout << var << " = " << output(input, 2, k, v) << '\n';
-			}
-		}
-	}
 }
