@@ -11,17 +11,17 @@ This is a simple expression evaluator written in C++. It can handle arithmetic o
 Here are some examples of how to use the expression evaluator:
 
 1. **Basic Arithmetic**:
-   - **Input**: `(1 + 2) * (3 - 4) / 5`
-   - **Output**: `-0.6`
+   - **Input**: `"(1 + 2) * (3 - 4) / 5"`
+   - **Output**: `"-0.6"`
 
 2. **Variable Assignment**:
-   - **Input**: `a = 1 + 2 * 3`
-   - **Output**: `a = 7`
+   - **Input**: `"a = 1 + 2 * 3"`
+   - **Output**: `"a = 7"`
 
 3. **Using Previously Defined Variables**:
-   - **Input**: `b = (5 - 6) * a`
-   - **Output**: `b = -7`
+   - **Input**: `"b = (5 - 6) * a"`
+   - **Output**: `"b = -7"`
 
 4. ***Using Undefined Variables**:
-   - **Input**: `c = x - 8`
-   - **Output**: `Error: Containing undefined variable(s).`
+   - **Input**: `"c = x - 8"`
+   - **Output**: `"Error: Containing undefined variable(s)."`

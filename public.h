@@ -20,7 +20,7 @@ typedef struct variable {
 
 int type(string opera);
 int precedence(int type);
-bool check_variable(string input);
-bool check_defined(string input[], int m, int n, variable v[]);
+bool is_variable_valid(string input);
+bool is_all_defined(string input[], int m, int n, variable v[]);
 double compute(double x, double y, operation s);
 double output(string input[], int m, int n, variable v[]);

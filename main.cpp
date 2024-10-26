@@ -19,7 +19,7 @@ int main() {
 		}
 		// Regular expression evaluation.
 		if (input[1] != "=") {
-			if (!check_defined(input, 0, k, v)) {
+			if (!is_all_defined(input, 0, k, v)) {
 				cout << "Error: Containing undefined variable(s).\n";
 			}
 			else {
@@ -28,7 +28,7 @@ int main() {
 		}
 		// Variable assignment.
 		else {
-			if (!check_defined(input, 2, k, v)) {
+			if (!is_all_defined(input, 2, k, v)) {
 				cout << "Error: Containing undefined variable(s).\n";
 			}
 			else {

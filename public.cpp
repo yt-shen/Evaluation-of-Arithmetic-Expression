@@ -23,16 +23,16 @@ int precedence(int type) {
 }
 
 // Check if the input is valid.
-bool check_variable(string input) {
+bool is_variable_valid(string input) {
 	return input.length() == 1 && isalpha(input[0]);
 }
 
 // Check if all the variables in the expression are defined.
-bool check_defined(string input[], int m, int n, variable v[]) {
+bool is_all_defined(string input[], int m, int n, variable v[]) {
 	bool def = 1;
 	char var;
 	for (int i = m; i <= n; i++) {
-		if (check_variable(input[i])) {
+		if (is_variable_valid(input[i])) {
 			var = input[i][0];
 			// Mark as false if any variable is undefined.
 			if (!v[int(var) - 'A'].defined) {
@@ -94,7 +94,7 @@ double output(string input[], int m, int n, variable v[]) {
 			symbol[t].precedence = precedence(symbol[t].type);
 			t++;
 		}
-		else if (check_variable(input[i])) {
+		else if (is_variable_valid(input[i])) {
 			var = input[i][0];
 			number[s] = v[int(var) - 'A'].value;
 			s++;
