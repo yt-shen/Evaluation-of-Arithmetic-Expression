@@ -16,6 +16,8 @@ After processing the expression, the evaluator outputs either the computed resul
 
 Compile: `$ make`
 
+Run the program: `$ ./main.exe`
+
 Here are some examples of how to use the expression evaluator:
 
 1. **Basic Arithmetic**:
